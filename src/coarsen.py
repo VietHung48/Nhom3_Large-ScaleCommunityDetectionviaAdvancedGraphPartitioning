@@ -83,14 +83,12 @@ if __name__ == "__main__":
               f"{H.number_of_edges():6d} cạnh, tổng trọng số = {tw}")
 
     print("\n== Kiểm tra bảo toàn ==")
-    # 1) tổng trọng số cạnh (kể cả self-loop) không đổi
     totals = {sum(d["weight"] for _, _, d in H.edges(data=True)) for H in levels}
     print("Tổng trọng số bảo toàn:", len(totals) == 1)
-    # 2) tổng vw = số đỉnh gốc
+
     print("Tổng vw bảo toàn:",
           all(sum(vw for _, vw in H.nodes(data="vw")) == G.number_of_nodes()
               for H in levels))
-    # 3) Q của cùng một phân hoạch phải bằng nhau ở mọi cấp
     coarse_part = community_louvain.best_partition(levels[-1], weight="weight",
                                                    random_state=0)
     labels = coarse_part
