@@ -1,0 +1,6 @@
+networkx>=3.0
+python-louvain>=0.16
+numpy
+pandas
+matplotlib
+pymetis
