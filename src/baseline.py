@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "third_party" / "python-louvain-master"))
 
 import community as community_louvain
-from utils import load_facebook
+from utils import load_facebook, load_youtube
 RESULTS = ROOT / "results"
 RESULTS.mkdir(exist_ok=True)
 
@@ -29,9 +29,10 @@ def run_baseline(G, seeds=(0, 1, 2, 3, 4)):
 
 
 if __name__ == "__main__":
-    G = load_facebook()
-    df = run_baseline(G)
+     
+    
+
+    G = load_youtube()
+    df = run_baseline(G, seeds=(0,)) 
     print(df.to_string(index=False))
-    print("\nTrung bình:")
-    print(df[["modularity", "num_communities", "time_sec"]].mean().round(4))
-    df.to_csv(RESULTS / "baseline.csv", index=False)
+    df.to_csv(RESULTS / "baseline_youtube.csv", index=False)

@@ -6,7 +6,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "third_party" / "python-louvain-master"))
 
 import community as community_louvain
-from utils import load_facebook
+from utils import load_youtube, load_facebook
 
 def coarsen_once(G, rng):
     """Một cấp heavy-edge matching.
@@ -58,6 +58,7 @@ def build_hierarchy(G, min_nodes=200, max_levels=30, min_shrink=0.95, seed=0):
     levels, maps = [G0], []
     while levels[-1].number_of_nodes() > min_nodes and len(maps) < max_levels:
         H, m = coarsen_once(levels[-1], rng)
+        print(f"Level {len(maps)+1}: {H.number_of_nodes()} đỉnh", flush=True)
         if H.number_of_nodes() > min_shrink * levels[-1].number_of_nodes():
             break                           # không co thêm được nữa
         levels.append(H)
@@ -73,7 +74,7 @@ def project(labels, mapping):
 if __name__ == "__main__":
     
 
-    G = load_facebook()
+    G = load_youtube()
     levels, maps = build_hierarchy(G)
 
     print("== Kích thước từng cấp ==")
@@ -83,12 +84,14 @@ if __name__ == "__main__":
               f"{H.number_of_edges():6d} cạnh, tổng trọng số = {tw}")
 
     print("\n== Kiểm tra bảo toàn ==")
+    # 1) tổng trọng số cạnh (kể cả self-loop) không đổi
     totals = {sum(d["weight"] for _, _, d in H.edges(data=True)) for H in levels}
     print("Tổng trọng số bảo toàn:", len(totals) == 1)
-
+    # 2) tổng vw = số đỉnh gốc
     print("Tổng vw bảo toàn:",
           all(sum(vw for _, vw in H.nodes(data="vw")) == G.number_of_nodes()
               for H in levels))
+    # 3) Q của cùng một phân hoạch phải bằng nhau ở mọi cấp
     coarse_part = community_louvain.best_partition(levels[-1], weight="weight",
                                                    random_state=0)
     labels = coarse_part
