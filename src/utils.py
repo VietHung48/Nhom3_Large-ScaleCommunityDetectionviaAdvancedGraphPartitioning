@@ -27,6 +27,7 @@ def graph_stats(G,clustering = False):
 
 
 if __name__ == "__main__":
+    # G = load_facebook()
     G = load_youtube()
     for k, v in graph_stats(G).items():
         print(f"{k}: {v}")
