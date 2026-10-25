@@ -32,7 +32,9 @@ if __name__ == "__main__":
      
     
 
-    G = load_youtube()
+    # G = load_youtube()
+    G = load_facebook()
     df = run_baseline(G, seeds=(0,)) 
     print(df.to_string(index=False))
-    df.to_csv(RESULTS / "baseline_youtube.csv", index=False)
+    # df.to_csv(RESULTS / "baseline_youtube.csv", index=False)
+    df.to_csv(RESULTS / "baseline_facebook.csv", index=False)
