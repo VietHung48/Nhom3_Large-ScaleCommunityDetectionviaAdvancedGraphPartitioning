@@ -31,32 +31,32 @@ def get_partition_regions(labels, k):
 
 def refine_region(args):
     """Refine một vùng độc lập, chạy trong một process riêng."""
-    G, region_labels, region_id = args
+    sub, region_labels, region_id = args          # nhận đồ thị con, không nhận G
     print(f"Process {region_id}: {len(region_labels)} đỉnh", flush=True)
     t = time.perf_counter()
-    refined = refine(G.subgraph(list(region_labels.keys())).copy(),
-                     region_labels)
+    refined = refine(sub, region_labels)          # bỏ .subgraph().copy()
     print(f"Process {region_id}: xong sau {time.perf_counter()-t:.1f}s", flush=True)
     return refined
 
 
 def parallel_refine(G, labels, k=4):
-    """Chia đồ thị thành k vùng, refine song song bằng multiprocessing."""
     comm_to_region, region_size = get_partition_regions(labels, k)
     print(f"Chia thành {k} vùng, kích thước: {region_size}")
 
-    # Gom đỉnh theo vùng
     regions = defaultdict(dict)
     for v, c in labels.items():
-        r = comm_to_region[c]
-        regions[r][v] = c
+        regions[comm_to_region[c]][v] = c
 
-    # Chạy song song
-    args = [(G, regions[r], r) for r in range(k)]
+    args = []
+    for r in range(k):
+        sub = G.subgraph(regions[r].keys()).copy()   # cắt ở process cha
+        args.append((sub, regions[r], r))
+    del regions
+
     with Pool(processes=k) as pool:
         results = pool.map(refine_region, args)
+    del args
 
-    # Gộp kết quả
     merged = {}
     for refined in results:
         merged.update(refined)
@@ -115,6 +115,7 @@ if __name__ == "__main__":
         r = multilevel_parallel(G, seed=0, k=k)
         rows.append(r)
         print(r)
+        pd.DataFrame(rows).to_csv(RESULTS / f"parallel_{dataset}.csv", index=False)
 
     df = pd.DataFrame(rows)
     print("\n== Bảng Speedup ==")
