@@ -1,0 +1,2 @@
+seed,levels,coarsest_nodes,num_communities,modularity,t_coarsen,t_initial,t_project,time_total
+0,7,175,11,0.8027620724134411,0.416,0.011,0.001,0.427
