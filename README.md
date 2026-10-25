@@ -21,11 +21,11 @@ Tải từ Stanford SNAP Database:
 - **Youtube**: https://snap.stanford.edu/data/com-Youtube.html
 
 Sau khi tải, đặt vào thư mục `data/`:
-
+```
 data/
 ├── facebook_combined.txt
 └── com-youtube.ungraph.txt
-
+```
 
 ## Cài đặt
 
@@ -37,6 +37,7 @@ pip install -r requirements.txt
 
 ## Cấu trúc thư mục
 
+```
 ├── data/ # Dữ liệu đồ thị
 ├── src/
 │ ├── utils.py # Đọc dữ liệu, thống kê
@@ -50,6 +51,7 @@ pip install -r requirements.txt
 ├── results/ # Kết quả thực nghiệm, thu lại bằng file csv
 ├── requirements.txt
 └── README.md
+```
 
 ## Chạy thực nghiệm
 
