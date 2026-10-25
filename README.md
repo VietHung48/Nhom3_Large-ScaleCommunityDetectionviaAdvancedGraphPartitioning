@@ -21,6 +21,7 @@ Tải từ Stanford SNAP Database:
 - **Youtube**: https://snap.stanford.edu/data/com-Youtube.html
 
 Sau khi tải, đặt vào thư mục `data/`:
+
 data/
 ├── facebook_combined.txt
 └── com-youtube.ungraph.txt
