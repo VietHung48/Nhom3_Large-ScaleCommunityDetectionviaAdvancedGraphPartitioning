@@ -103,8 +103,8 @@ if __name__ == "__main__":
     RESULTS = ROOT / "results"
     RESULTS.mkdir(exist_ok=True)
 
-    # dataset = sys.argv[1] if len(sys.argv) > 1 else "facebook"
-    # G = load_facebook() if dataset == "facebook" else load_youtube()
+    # dataset = "facebook"
+    # G = load_facebook()
     
     dataset = "youtube"
     G = load_youtube()
