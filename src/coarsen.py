@@ -75,6 +75,9 @@ if __name__ == "__main__":
     
 
     G = load_youtube()
+    #G = load_facebook()
+
+    
     levels, maps = build_hierarchy(G)
 
     print("== Kích thước từng cấp ==")
