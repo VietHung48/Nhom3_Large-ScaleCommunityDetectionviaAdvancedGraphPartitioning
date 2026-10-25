@@ -78,9 +78,10 @@ def multilevel_with_refine(G, seed=0, min_nodes=200):
     }
 
 if __name__ == "__main__":
-    G = load_facebook()
-    # G = load_youtube()
-    rows = [multilevel_no_refine(G, seed=0)]   # 1 seed trước
+    #G = load_facebook()
+    G = load_youtube()
+    rows = [multilevel_with_refine(G, seed=0)]   
+    #rows = [multilevel_no_refine(G, seed=0)]  #nếu  muốn chạy chưa tinh chỉnh, đồng thời comment dòng trên 
     df = pd.DataFrame(rows)
     print(df.to_string(index=False))
 
@@ -92,7 +93,10 @@ if __name__ == "__main__":
     print(f"Multilevel (có refine): Q = {df['modularity'].mean():.4f}, "
           f"time = {df['time_total'].mean():.3f}s")
 
-    # df.to_csv(RESULTS / "multilevel_refine_youtube.csv", index=False)
-    df.to_csv(RESULTS / "multilevel_no_refine_facebook.csv", index=False)
+    # df.to_csv(RESULTS / "multilevel_no_refine_youtube.csv", index=False)
+    # df.to_csv(RESULTS / "multilevel_no_refine_facebook.csv", index=False)
+    #df.to_csv(RESULTS / "multilevel_refine_facebook.csv", index=False)
+    df.to_csv(RESULTS / "multilevel_refine_youtube.csv", index=False)
+    
     
     
