@@ -116,3 +116,9 @@ Kết quả lưu tự động vào `results/`.
 [5] Stanford SNAP - Facebook. https://snap.stanford.edu/data/ego-Facebook.html
 
 [6] Stanford SNAP - Youtube. https://snap.stanford.edu/data/com-Youtube.html
+
+[7] Slide bài giảng Phân tích và thiết kế thuật toán – Đại học Kinh tế Quốc dân
+
+
+
+
