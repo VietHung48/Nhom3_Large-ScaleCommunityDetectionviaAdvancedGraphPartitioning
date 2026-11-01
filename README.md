@@ -76,6 +76,9 @@ Mở `src/multilevel.py` và bấm Run.
 ### 4. Chạy Multilevel có tinh chỉnh + song song
 Mở `src/parallel.py` và bấm Run.
 
+### 5. Chạy Visualize 
+Mở `src/visualize.py` và bấm Run để hiện biểu đồ.
+
 Kết quả lưu tự động vào `results/`.
 
 ## Kết quả
