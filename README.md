@@ -46,9 +46,11 @@ pip install -r requirements.txt
 │ ├── refine.py # Tinh chỉnh phân cụm
 │ ├── multilevel.py # Pipeline đầy đủ: thu nhỏ + phân cụm + phóng to
 │ └── parallel.py # Song song hóa bằng multiprocessing
+│ └── visualize.py #trực quan hóa dữ liệu
 ├── third_party/
 │ └── python-louvain-master/ # Thư viện Louvain
 ├── results/ # Kết quả thực nghiệm, thu lại bằng file csv
+│ └── figures #thư mục ảnh kết quả trực quan hóa dữ liệu
 ├── requirements.txt
 └── README.md
 ```
