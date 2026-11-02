@@ -49,7 +49,7 @@ def parallel_refine(G, labels, k=4):
 
     args = []
     for r in range(k):
-        sub = G.subgraph(regions[r].keys()).copy()   # cắt ở process cha
+        sub = G.subgraph(regions[r].keys()).copy()  
         args.append((sub, regions[r], r))
     del regions
 
@@ -109,7 +109,6 @@ if __name__ == "__main__":
     dataset = "youtube"
     G = load_youtube()
     rows = []
-    # Đo speedup: chạy với 1, 2, 4 process
     for k in [1, 2, 4]:
         print(f"\n=== {k} process(es) ===")
         r = multilevel_parallel(G, seed=0, k=k)
