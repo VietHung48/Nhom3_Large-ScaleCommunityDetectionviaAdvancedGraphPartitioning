@@ -37,9 +37,9 @@ def coarsen_once(G, rng):
     for v, c in mapping.items():
         H.nodes[c]["vw"] += G.nodes[v].get("vw", 1)
 
-    for u, v, d in G.edges(data=True):      # self-loop của G cũng được duyệt 1 lần
+    for u, v, d in G.edges(data=True):     
         a, b, w = mapping[u], mapping[v], d.get("weight", 1)
-        if H.has_edge(a, b):                # a == b thì chính là cộng vào self-loop
+        if H.has_edge(a, b):             
             H[a][b]["weight"] += w
         else:
             H.add_edge(a, b, weight=w)
@@ -85,18 +85,13 @@ if __name__ == "__main__":
         tw = sum(d["weight"] for _, _, d in H.edges(data=True))
         print(f"Level {i}: {H.number_of_nodes():5d} đỉnh, "
               f"{H.number_of_edges():6d} cạnh, tổng trọng số = {tw}")
-
     print("\n== Kiểm tra bảo toàn ==")
-    # 1) tổng trọng số cạnh (kể cả self-loop) không đổi
     totals = {sum(d["weight"] for _, _, d in H.edges(data=True)) for H in levels}
     print("Tổng trọng số bảo toàn:", len(totals) == 1)
-    # 2) tổng vw = số đỉnh gốc
     print("Tổng vw bảo toàn:",
           all(sum(vw for _, vw in H.nodes(data="vw")) == G.number_of_nodes()
               for H in levels))
-    # 3) Q của cùng một phân hoạch phải bằng nhau ở mọi cấp
-    coarse_part = community_louvain.best_partition(levels[-1], weight="weight",
-                                                   random_state=0)
+    coarse_part = community_louvain.best_partition(levels[-1], weight="weight",random_state=0)
     labels = coarse_part
     q_coarse = community_louvain.modularity(labels, levels[-1], weight="weight")
     for i in range(len(maps) - 1, -1, -1):
