@@ -17,9 +17,7 @@ def get_partition_regions(labels, k):
     """Chia các cộng đồng thành k vùng cân bằng (greedy bin-packing)."""
     from collections import Counter
     sizes = Counter(labels.values())
-    # Sắp xếp cộng đồng theo kích thước giảm dần
     sorted_comms = sorted(sizes.items(), key=lambda x: x[1], reverse=True)
-    # Gán cộng đồng vào vùng đang nhỏ nhất
     region_size = [0] * k
     comm_to_region = {}
     for comm, size in sorted_comms:
@@ -31,10 +29,10 @@ def get_partition_regions(labels, k):
 
 def refine_region(args):
     """Refine một vùng độc lập, chạy trong một process riêng."""
-    sub, region_labels, region_id = args          # nhận đồ thị con, không nhận G
+    sub, region_labels, region_id = args        
     print(f"Process {region_id}: {len(region_labels)} đỉnh", flush=True)
     t = time.perf_counter()
-    refined = refine(sub, region_labels)          # bỏ .subgraph().copy()
+    refined = refine(sub, region_labels)       
     print(f"Process {region_id}: xong sau {time.perf_counter()-t:.1f}s", flush=True)
     return refined
 
