@@ -6,7 +6,7 @@ Phát hiện cộng đồng trong mạng xã hội quy mô lớn bằng thuật 
 
 | Họ tên | Khóa | Nhiệm vụ |
 |---|---|---|
-| Bế Việt Hùng | 65 | Code + thực nghiệm |
+| Bế Việt Hùng (nhóm trưởng) | 65 | Code + thực nghiệm |
 | Vũ Hoàng An | 63 | Mô hình hóa bài toán |
 | Trịnh Việt Thông | 64 | Cơ sở lý thuyết |
 | Bùi Văn Dũng | 65 | Công trình liên quan |
