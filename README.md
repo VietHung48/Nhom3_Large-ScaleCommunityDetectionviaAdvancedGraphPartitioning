@@ -89,19 +89,22 @@ Kết quả lưu tự động vào `results/`.
 |---|---|---|
 | Louvain gốc | 0,8349 | 0,998s |
 | Multilevel chưa tinh chỉnh | 0,8028 | 0,427s |
-| Multilevel có tinh chỉnh (k=1) | 0,8312 | 6,102s |
-| Song song k=2 | 0,8204 | 5,388s |
-| Song song k=4 | 0,8109 | 6,656s |
+| Multilevel có tinh chỉnh (k=1) | 0,8312 | 1,646s |
+| Song song k=1 |0,8312 | 4,966s |
+| Song song k=2 | 0,8204 | 5,154s |
+| Song song k=4 | 0,8109 | 5,535s |
 
 ### Youtube (1.134.890 đỉnh)
 
 | Phương pháp | Q | Thời gian |
 |---|---|---|
-| Louvain gốc | 0,7161 | 405s |
-| Multilevel chưa tinh chỉnh | 0,6719 | 1030s |
-| Multilevel có tinh chỉnh (k=1) | 0,7243 | 2701s |
-| Song song k=2 | 0,7149 | 2808s |
-| Song song k=4 | 0,6948 | 2186s |
+|Louvain gốc|0,7161|405,964s|
+| Multilevel chưa tinh chỉnh | 0,6719 | 1030,888s |
+|Multilevel có tinh chỉnh|0,7243|2926,385s|
+|Song song k=1|	0,7243	|2701,52s|
+|Song song k=2|	0,7149|	2808,471s|
+|Song song k=4|	0,6948	|2186,377s|
+
 
 ## Lưu ý
 
